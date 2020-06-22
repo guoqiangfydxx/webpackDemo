@@ -2,6 +2,7 @@ import _ from 'loadsh'
 import './index.css'
 import Logo from './assets/logo.jpg'
 import XmlData from './data.xml'
+import PrintMe from './print'
 
 function component() {
   var element = document.createElement("div");
@@ -13,6 +14,11 @@ function component() {
   var myIcon = new Image()
   myIcon.src = Logo
   element.appendChild(myIcon)
+
+  var btn = document.createElement('button')
+  btn.innerText = 'button'
+  btn.onclick = PrintMe
+  element.appendChild(btn)
 
   console.log(XmlData)
 
