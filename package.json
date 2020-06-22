@@ -1,11 +1,11 @@
 {
-  "name": "webpackDemo",
+  "name": "webpackdemo",
   "version": "1.0.0",
   "description": "",
   "private": true,
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack"
+    "build": "webpack --config webpack.config.js"
   },
   "repository": {
     "type": "git",
@@ -20,9 +20,13 @@
   "homepage": "https://github.com/guoqiangfydxx/webpackDemo#readme",
   "devDependencies": {
     "webpack": "^4.43.0",
-    "webpack-cli": "^3.3.12"
+    "webpack-cli": "^3.3.12",
+    "xml-loader": "^1.2.1"
   },
   "dependencies": {
-    "loadsh": "0.0.4"
+    "css-loader": "^3.6.0",
+    "file-loader": "^6.0.0",
+    "loadsh": "0.0.4",
+    "style-loader": "^1.2.1"
   }
 }
