@@ -5,8 +5,8 @@
   "private": true,
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack --config webpack.config.js",
-    "start": "webpack-dev-server --open"
+    "build": "webpack --config webpack.prod.js",
+    "start": "webpack-dev-server --open --config webpack.dev.js"
   },
   "repository": {
     "type": "git",
@@ -31,6 +31,8 @@
     "file-loader": "^6.0.0",
     "html-webpack-plugin": "^4.3.0",
     "loadsh": "0.0.4",
-    "style-loader": "^1.2.1"
+    "style-loader": "^1.2.1",
+    "uglifyjs-webpack-plugin": "^2.2.0",
+    "webpack-merge": "^4.2.2"
   }
 }

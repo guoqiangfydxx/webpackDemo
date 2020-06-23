@@ -13,17 +13,16 @@ module.exports = {
     path: path.resolve(__dirname, "dist"),
   },
   mode: "production",
-  devtool: 'inline-source-map',
-  devServer: {
-    contentBase: './dist',
-    hot: true
-  },
+//   devtool: 'inline-source-map',
+//   devServer: {
+//     contentBase: './dist',
+//     hot: true
+//   },
   plugins: [
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin(),
     new webpack.NamedModulesPlugin(),
     new webpack.HotModuleReplacementPlugin()
-
   ],
   module: {
     rules: [

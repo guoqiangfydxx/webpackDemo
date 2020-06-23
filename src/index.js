@@ -2,7 +2,7 @@ import _ from 'loadsh'
 import './index.css'
 import Logo from './assets/logo.jpg'
 import XmlData from './data.xml'
-import PrintMe from './print'
+import PrintMe, { cube } from './print'
 
 function component() {
   var element = document.createElement("div");
@@ -20,6 +20,11 @@ function component() {
   btn.onclick = PrintMe
   element.appendChild(btn)
 
+  var btn2 = document.createElement('button')
+  btn2.innerText = 'cube'
+  btn2.onclick = cube
+  element.appendChild(btn2)
+
   console.log(XmlData)
 
   return element;
@@ -27,6 +32,6 @@ function component() {
 
 
 
-window.addEventListener('load', () => {
+window.addEventListener('load', function(){
    document.body.appendChild(component());
 }, false)
