@@ -9,8 +9,8 @@ module.exports = {
     // print: './src/print.js'
   },
   output: {
-    // filename: "[name].bundle.js",
-    chunkFilename: "[name].bundle.js",
+    filename: "[name].[hash].js",
+    // chunkFilename: "[name].bundle.js",
     path: path.resolve(__dirname, "dist"),
   },
   mode: "production",
@@ -25,6 +25,17 @@ module.exports = {
     new webpack.NamedModulesPlugin(),
     new webpack.HotModuleReplacementPlugin()
   ],
+  optimization: {
+    splitChunks: {
+      cacheGroups: {
+        commons: {
+          name: 'commons',
+          chunks: 'all',
+          minChunks: 2
+        }
+      }
+    }
+  },
   module: {
     rules: [
       {

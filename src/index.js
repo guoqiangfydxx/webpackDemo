@@ -20,11 +20,11 @@ function component() {
 
   var btn = document.createElement('button')
   btn.innerText = 'button'
-  // btn.onclick = PrintMe
-  btn.onclick = e => import(/* webpackChunkName: "print" */ './print').then(module => {
-    const print = module.default
-    print()
-  })
+  btn.onclick = PrintMe
+  // btn.onclick = e => import(/* webpackChunkName: "print" */ './print').then(module => {
+  //   const print = module.default
+  //   print()
+  // })
   element.appendChild(btn)
 
   var btn2 = document.createElement('button')
