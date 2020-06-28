@@ -2,6 +2,7 @@ const path = require("path");
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const webpack = require('webpack')
+const WorkWebpackPlugin = require('workbox-webpack-plugin')
 
 module.exports = {
   entry: {
@@ -23,7 +24,14 @@ module.exports = {
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin(),
     new webpack.NamedModulesPlugin(),
-    new webpack.HotModuleReplacementPlugin()
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.ProvidePlugin({
+      _: 'loadsh'
+    }),
+    new WorkWebpackPlugin.GenerateSW({
+      skipWaiting: true,
+      clientsClaim: true
+    })
   ],
   optimization: {
     splitChunks: {

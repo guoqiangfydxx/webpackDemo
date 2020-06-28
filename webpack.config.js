@@ -22,7 +22,10 @@ module.exports = {
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin(),
     new webpack.NamedModulesPlugin(),
-    new webpack.HotModuleReplacementPlugin()
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.ProvidePlugin({
+      _: 'loadsh'
+    })
 
   ],
   module: {
