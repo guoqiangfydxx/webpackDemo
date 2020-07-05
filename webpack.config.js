@@ -5,7 +5,7 @@ const webpack = require('webpack')
 
 module.exports = {
   entry: {
-    app: "./src/index.js",
+    app: "./index.js",
     // print: './src/print.js'
   },
   output: {

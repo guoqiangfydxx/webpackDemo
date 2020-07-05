@@ -10,8 +10,8 @@ module.exports = {
     // print: './src/print.js'
   },
   output: {
-    filename: "[name].[hash].js",
-    // chunkFilename: "[name].bundle.js",
+    filename: "[name].[contenthash].js",
+    chunkFilename: "[name].chunk.js",
     path: path.resolve(__dirname, "dist"),
   },
   mode: "production",
@@ -24,24 +24,20 @@ module.exports = {
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin(),
     new webpack.NamedModulesPlugin(),
-    new webpack.HotModuleReplacementPlugin(),
+    // new webpack.HotModuleReplacementPlugin(),
     new webpack.ProvidePlugin({
       _: 'loadsh'
     }),
     new WorkWebpackPlugin.GenerateSW({
       skipWaiting: true,
       clientsClaim: true
-    })
+    }),
   ],
   optimization: {
     splitChunks: {
-      cacheGroups: {
-        commons: {
-          name: 'commons',
-          chunks: 'all',
-          minChunks: 2
-        }
-      }
+      chunks: 'all',
+      name: 'vendor',
+    filename: 'vendor-[hash].js',
     }
   },
   module: {
@@ -61,6 +57,7 @@ module.exports = {
       {
         test: /\.(js|jsx)$/,
         exclude: /(node_modules|bower_components)/,
+        include: path.resolve(__dirname, "src"),
         use: {
           loader: 'babel-loader',
           options: {
@@ -70,4 +67,9 @@ module.exports = {
       }
     ],
   },
+  resolve: {
+    alias: {
+      '@': path.resolve(__dirname, 'src')
+    }
+  }
 };
