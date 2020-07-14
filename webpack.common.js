@@ -3,6 +3,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const webpack = require('webpack')
 const WorkWebpackPlugin = require('workbox-webpack-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 module.exports = {
   entry: {
@@ -32,6 +33,9 @@ module.exports = {
       skipWaiting: true,
       clientsClaim: true
     }),
+    new MiniCssExtractPlugin({
+      name: 'css/[name].[contenthash:8].css'
+    })
   ],
   optimization: {
     splitChunks: {
@@ -44,11 +48,11 @@ module.exports = {
     rules: [
       {
         test: /\.css$/,
-        use: ["style-loader", "css-loader"],
+        use: [MiniCssExtractPlugin.loader, "css-loader"],
       },
       {
         test: /\.(png|svg|jpg|gif)$/,
-        use: ["file-loader"],
+        use: [{ loader: "file-loader" , options: { name: 'media/[name].[hash:8].[ext]'}}],
       },
       {
         test: /.xml$/,
