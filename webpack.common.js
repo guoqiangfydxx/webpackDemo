@@ -10,11 +10,11 @@ module.exports = {
     // print: './src/print.js'
   },
   output: {
-    filename: "[name].[contenthash].js",
+    filename: "[name].[hash].js",
     chunkFilename: "[name].chunk.js",
-    path: path.resolve(__dirname, "dist"),
+    path: path.resolve(__dirname, "build"),
   },
-  mode: "production",
+  mode: "development",
 //   devtool: 'inline-source-map',
 //   devServer: {
 //     contentBase: './dist',

@@ -1,6 +1,6 @@
 export default function PrintMe() {
     console.log('I got called from print.js')
-    console.error('get error from print')
+    console.warn('get error from print')
 }
 
 export function square(x) {

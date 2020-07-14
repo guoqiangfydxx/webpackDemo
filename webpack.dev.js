@@ -7,6 +7,6 @@ module.exports = merge(common, {
     contentBase: "./dist",
     hot: true,
     compress: true,
-    https: true
+    https: false
   },
 });
