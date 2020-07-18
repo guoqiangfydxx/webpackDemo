@@ -1,9 +1,16 @@
 .hello {
     color: red;
     font-weight: 500;
+    display: grid;
+    /* align-items: center; */
 }
 
 img {
     height: 100px;
     width: 100px;
+    -webkit-box-reflect: right;
+}
+
+::placeholder {
+    color: #f00;
 }

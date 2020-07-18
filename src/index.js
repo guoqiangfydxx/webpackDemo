@@ -34,6 +34,10 @@ function component() {
 
   console.log(XmlData)
 
+  var input = document.createElement('input')
+  input.placeholder = '请输入'
+  element.appendChild(input)
+
   return element;
 }
 
