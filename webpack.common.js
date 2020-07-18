@@ -6,12 +6,46 @@ const WorkWebpackPlugin = require('workbox-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const TerserWebpackPlugin = require('terser-webpack-plugin')
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
+const glob = require('glob')
 
+const setMAP = () => {
+  const entry = {}
+  const HtmlWebpackPlugin1 = []
+
+  const entryFiles = glob.sync(path.resolve(__dirname, './src/*/index.js'))
+  entryFiles.forEach(filePath => {
+    const chunkName = filePath.match(/src\/(.*)\/index\.js/)
+    const chunk = chunkName && chunkName[1]
+    entry[chunk] = filePath
+    HtmlWebpackPlugin1.push(new HtmlWebpackPlugin({
+      template: path.join(__dirname, `./src/${chunk}/${chunk}.html`),
+      filename: `${chunk}.html`,
+      chunks: [chunk],
+      minify: {
+        removeComments: true,
+        collapseWhitespace: true,
+        removeRedundantAttributes: true,
+        useShortDoctype: true,
+        removeEmptyAttributes: true,
+        removeStyleLinkTypeAttributes: true,
+        keepClosingSlash: true,
+        minifyJS: true,
+        minifyCSS: true,
+        minifyURLs: true,
+        html5: true,
+      },
+    }))
+  })
+
+  return {
+    entry,
+    HtmlWebpackPlugin1
+  }
+}
+
+const { entry, HtmlWebpackPlugin1 } = setMAP()
 module.exports = {
-  entry: {
-    app: "./src/index.js",
-    // print: './src/print.js'
-  },
+  entry: entry,
   output: {
     filename: "[name].[hash].js",
     chunkFilename: "[name].chunk.js",
@@ -25,22 +59,22 @@ module.exports = {
 //   },
   plugins: [
     new CleanWebpackPlugin(),
-    new HtmlWebpackPlugin({
-      template: './src/test.html',
-      filename: 'index.html',
-      minify: {
-        removeComments: true,
-        collapseWhitespace: true,
-        removeRedundantAttributes: true,
-        useShortDoctype: true,
-        removeEmptyAttributes: true,
-        removeStyleLinkTypeAttributes: true,
-        keepClosingSlash: true,
-        minifyJS: true,
-        minifyCSS: true,
-        minifyURLs: true,
-      },
-    }),
+    // new HtmlWebpackPlugin({
+    //   template: './src/test.html',
+    //   filename: 'index.html',
+    //   minify: {
+    //     removeComments: true,
+    //     collapseWhitespace: true,
+    //     removeRedundantAttributes: true,
+    //     useShortDoctype: true,
+    //     removeEmptyAttributes: true,
+    //     removeStyleLinkTypeAttributes: true,
+    //     keepClosingSlash: true,
+    //     minifyJS: true,
+    //     minifyCSS: true,
+    //     minifyURLs: true,
+    //   },
+    // }),
     new webpack.NamedModulesPlugin(),
     // new webpack.HotModuleReplacementPlugin(),
     new webpack.ProvidePlugin({
@@ -53,7 +87,7 @@ module.exports = {
     new MiniCssExtractPlugin({
       name: 'css/[name].[contenthash:8].css'
     })
-  ],
+  ].concat(HtmlWebpackPlugin1),
   optimization: {
     splitChunks: {
       chunks: 'all',

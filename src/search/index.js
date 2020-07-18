@@ -2,7 +2,7 @@
 import "core-js/modules/es.promise";
 import "core-js/modules/es.array.iterator";
 import './index.css'
-import Logo from './assets/logo.jpg'
+import Logo from '../assets/logo.jpg'
 import XmlData from './data.xml'
 import PrintMe, { cube } from './print'
 

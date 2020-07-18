@@ -36,6 +36,7 @@
     "css-loader": "^3.6.0",
     "cssnano": "^4.1.10",
     "file-loader": "^6.0.0",
+    "glob": "^7.1.6",
     "html-webpack-plugin": "^4.3.0",
     "lib-flexible": "^0.3.2",
     "loadsh": "0.0.4",
