@@ -20,7 +20,7 @@ const setMAP = () => {
     HtmlWebpackPlugin1.push(new HtmlWebpackPlugin({
       template: path.join(__dirname, `./src/${chunk}/${chunk}.html`),
       filename: `${chunk}.html`,
-      chunks: [chunk],
+      chunks: ['vendor', chunk],
       minify: {
         removeComments: true,
         collapseWhitespace: true,
@@ -90,9 +90,21 @@ module.exports = {
   ].concat(HtmlWebpackPlugin1),
   optimization: {
     splitChunks: {
-      chunks: 'all',
-      name: 'vendor',
-      filename: 'vendor-[hash].js',
+      cacheGroups: {
+        vendor: {
+          test: /(react| react-dom)/,
+          name: 'vendor',
+          chunks: 'all'
+        },
+        commons: {
+          name: 'commons',
+          chunks: 'initial',
+          minChunks: 2
+        }
+      }
+      // chunks: 'all',
+      // name: 'vendor',
+      // filename: 'vendor-[hash].js',
     },
     minimizer: [new TerserWebpackPlugin({}), new OptimizeCSSAssetsPlugin({ cssProcessor: require('cssnano')})]
   },
