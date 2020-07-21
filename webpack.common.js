@@ -111,6 +111,13 @@ module.exports = {
   module: {
     rules: [
       {
+        enforce: 'pre',
+        test: /\.(js|jsx)$/,
+        exclude: /node_modules/,
+        loader: 'eslint-loader',
+        include: path.resolve(__dirname, 'src')
+      },
+      {
         test: /\.css$/,
         use: [{ loader: MiniCssExtractPlugin.loader }, {
           loader: 'css-loader',
@@ -136,7 +143,7 @@ module.exports = {
         use: {
           loader: 'babel-loader',
           options: {
-            presets: ['@babel/preset-env']
+            presets: [['@babel/preset-env'], '@babel/preset-react']
           }
         }
       }

@@ -1,3 +1,4 @@
-import React from 'react';
+import React from 'react'
 
-export default() => <div>动态 import</div>;
+// eslint-disable-next-line react/display-name
+export default () => <div>动态 import</div>
