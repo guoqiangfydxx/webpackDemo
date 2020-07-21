@@ -80,10 +80,10 @@ module.exports = {
     new webpack.ProvidePlugin({
       _: 'loadsh'
     }),
-    new WorkWebpackPlugin.GenerateSW({
-      skipWaiting: true,
-      clientsClaim: true
-    }),
+    // new WorkWebpackPlugin.GenerateSW({
+    //   skipWaiting: true,
+    //   clientsClaim: true
+    // }),
     new MiniCssExtractPlugin({
       name: 'css/[name].[contenthash:8].css'
     })
