@@ -1,5 +1,6 @@
 import React from 'react'
 import ReactDom from 'react-dom'
+import NumAddByBit from 'numaddbybit'
 class TestReact extends React.Component {
   constructor (props) {
     super(props)
@@ -8,6 +9,10 @@ class TestReact extends React.Component {
       Form: null,
       Text: null
     }
+  }
+
+  componentDidMount () {
+    console.log('testFor', NumAddByBit('343434', '47494'))
   }
 
     handleImportCounter = () => {
