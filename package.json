@@ -8,7 +8,8 @@
     "build": "webpack --config webpack.prod.js",
     "start": "webpack-dev-server --open --config webpack.dev.js",
     "lint_fix": "./node_modules/.bin/eslint --fix src/**/*.js",
-    "lint": "./node_modules/.bin/eslint src/**/*.js"
+    "lint": "./node_modules/.bin/eslint src/**/*.js",
+    "build:ssr": "webpack --config webpack.ssr.js"
   },
   "repository": {
     "type": "git",
@@ -49,6 +50,7 @@
     "css-loader": "^3.6.0",
     "cssnano": "^4.1.10",
     "eslint-loader": "^4.0.2",
+    "express": "^4.17.1",
     "file-loader": "^6.0.0",
     "glob": "^7.1.6",
     "html-webpack-plugin": "^4.3.0",
