@@ -1,4 +1,4 @@
-const path = require("path");
+const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const webpack = require('webpack')
@@ -7,6 +7,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const TerserWebpackPlugin = require('terser-webpack-plugin')
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 const glob = require('glob')
+const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin')
 
 const setMAP = () => {
   const entry = {}
@@ -32,8 +33,8 @@ const setMAP = () => {
         minifyJS: true,
         minifyCSS: true,
         minifyURLs: true,
-        html5: true,
-      },
+        html5: true
+      }
     }))
   })
 
@@ -47,16 +48,16 @@ const { entry, HtmlWebpackPlugin1 } = setMAP()
 module.exports = {
   entry: entry,
   output: {
-    filename: "[name].[hash].js",
-    chunkFilename: "[name].chunk.js",
-    path: path.resolve(__dirname, "build"),
+    filename: '[name].[hash].js',
+    chunkFilename: '[name].chunk.js',
+    path: path.resolve(__dirname, 'build')
   },
-  mode: "development",
-//   devtool: 'inline-source-map',
-//   devServer: {
-//     contentBase: './dist',
-//     hot: true
-//   },
+  mode: 'development',
+  //   devtool: 'inline-source-map',
+  //   devServer: {
+  //     contentBase: './dist',
+  //     hot: true
+  //   },
   plugins: [
     new CleanWebpackPlugin(),
     // new HtmlWebpackPlugin({
@@ -86,7 +87,8 @@ module.exports = {
     }),
     new MiniCssExtractPlugin({
       name: 'css/[name].[contenthash:8].css'
-    })
+    }),
+    new FriendlyErrorsWebpackPlugin()
   ].concat(HtmlWebpackPlugin1),
   optimization: {
     splitChunks: {
@@ -106,7 +108,7 @@ module.exports = {
       // name: 'vendor',
       // filename: 'vendor-[hash].js',
     },
-    minimizer: [new TerserWebpackPlugin({}), new OptimizeCSSAssetsPlugin({ cssProcessor: require('cssnano')})]
+    minimizer: [new TerserWebpackPlugin({}), new OptimizeCSSAssetsPlugin({ cssProcessor: require('cssnano') })]
   },
   module: {
     rules: [
@@ -122,24 +124,24 @@ module.exports = {
         use: [{ loader: MiniCssExtractPlugin.loader }, {
           loader: 'css-loader',
           options: {
-            importLoaders: 1,
+            importLoaders: 1
           }
         }, {
           loader: 'postcss-loader'
-        }],
+        }]
       },
       {
         test: /\.(png|svg|jpg|gif)$/,
-        use: [{ loader: "file-loader" , options: { name: 'media/[name].[hash:8].[ext]'}}],
+        use: [{ loader: 'file-loader', options: { name: 'media/[name].[hash:8].[ext]' } }]
       },
       {
         test: /.xml$/,
-        use: ["xml-loader"],
+        use: ['xml-loader']
       },
       {
         test: /\.(js|jsx)$/,
         exclude: /(node_modules|bower_components)/,
-        include: path.resolve(__dirname, "src"),
+        include: path.resolve(__dirname, 'src'),
         use: {
           loader: 'babel-loader',
           options: {
@@ -147,11 +149,11 @@ module.exports = {
           }
         }
       }
-    ],
+    ]
   },
   resolve: {
     alias: {
       '@': path.resolve(__dirname, 'src')
     }
   }
-};
+}
