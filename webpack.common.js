@@ -8,6 +8,7 @@ const TerserWebpackPlugin = require('terser-webpack-plugin')
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 const glob = require('glob')
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin')
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer')
 
 const setMAP = () => {
   const entry = {}
@@ -88,7 +89,8 @@ module.exports = {
     new MiniCssExtractPlugin({
       name: 'css/[name].[contenthash:8].css'
     }),
-    new FriendlyErrorsWebpackPlugin()
+    new FriendlyErrorsWebpackPlugin(),
+    new BundleAnalyzerPlugin()
   ].concat(HtmlWebpackPlugin1),
   optimization: {
     splitChunks: {

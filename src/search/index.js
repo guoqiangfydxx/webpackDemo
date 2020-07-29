@@ -1,5 +1,5 @@
 // import _ from 'loadsh'
-import React from 'react'
+// import React from 'react'
 import 'core-js/modules/es.promise'
 import 'core-js/modules/es.array.iterator'
 import './index.css'
@@ -44,7 +44,7 @@ function component () {
 
 window.addEventListener('load', function () {
   document.body.appendChild(component())
-  console.log('react', React)
+  // console.log('react', React)
 }, false)
 
 if ('serviceWorker' in navigator) {

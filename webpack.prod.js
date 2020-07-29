@@ -1,12 +1,15 @@
 const merge = require('webpack-merge')
-const common =  require('./webpack.common.js')
+const common = require('./webpack.common.js')
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin')
+const SpeedMeasureWebpaclPlugin = require('speed-measure-webpack-plugin')
 
-module.exports = merge(common, {
+const smp = new SpeedMeasureWebpaclPlugin()
+
+module.exports = smp.wrap(merge(common, {
   devtool: 'source-map',
   plugins: [
-      new UglifyJSPlugin({
-          sourceMap: true
-      })
+    new UglifyJSPlugin({
+      sourceMap: true
+    })
   ]
-});
+}))
