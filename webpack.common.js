@@ -144,12 +144,19 @@ module.exports = {
         test: /\.(js|jsx)$/,
         exclude: /(node_modules|bower_components)/,
         include: path.resolve(__dirname, 'src'),
-        use: {
-          loader: 'babel-loader',
-          options: {
-            presets: [['@babel/preset-env'], '@babel/preset-react']
-          }
-        }
+        use: [
+          {
+            loader: 'thread-loader',
+            options: {
+              workers: 3
+            }
+          },
+          {
+            loader: 'babel-loader',
+            options: {
+              presets: [['@babel/preset-env'], '@babel/preset-react']
+            }
+          }]
       }
     ]
   },
