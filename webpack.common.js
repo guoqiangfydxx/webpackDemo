@@ -110,7 +110,9 @@ module.exports = {
       // name: 'vendor',
       // filename: 'vendor-[hash].js',
     },
-    minimizer: [new TerserWebpackPlugin({}), new OptimizeCSSAssetsPlugin({ cssProcessor: require('cssnano') })]
+    minimizer: [new TerserWebpackPlugin({
+      parallel: 4
+    }), new OptimizeCSSAssetsPlugin({ cssProcessor: require('cssnano') })]
   },
   module: {
     rules: [
