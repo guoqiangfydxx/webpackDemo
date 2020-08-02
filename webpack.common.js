@@ -10,6 +10,11 @@ const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 const glob = require('glob')
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin')
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer')
+const PurgecssPlugin = require('purgecss-webpack-plugin')
+
+const PATHS = {
+  src: path.join(__dirname, 'src')
+}
 
 const setMAP = () => {
   const entry = {}
@@ -92,7 +97,10 @@ module.exports = {
     }),
     new FriendlyErrorsWebpackPlugin(),
     new BundleAnalyzerPlugin(),
-    new HardSourceWebpackPlugin()
+    new HardSourceWebpackPlugin(),
+    new PurgecssPlugin({
+      paths: glob.sync(`${PATHS.src}/**/*`, { nodir: true })
+    })
   ].concat(HtmlWebpackPlugin1),
   optimization: {
     splitChunks: {
