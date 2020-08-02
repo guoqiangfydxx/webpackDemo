@@ -5,6 +5,7 @@ const webpack = require('webpack')
 const WorkWebpackPlugin = require('workbox-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const TerserWebpackPlugin = require('terser-webpack-plugin')
+const HardSourceWebpackPlugin = require('hard-source-webpack-plugin')
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 const glob = require('glob')
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin')
@@ -90,16 +91,17 @@ module.exports = {
       name: 'css/[name].[contenthash:8].css'
     }),
     new FriendlyErrorsWebpackPlugin(),
-    new BundleAnalyzerPlugin()
+    new BundleAnalyzerPlugin(),
+    new HardSourceWebpackPlugin()
   ].concat(HtmlWebpackPlugin1),
   optimization: {
     splitChunks: {
       cacheGroups: {
-        // vendor: {
-        //   test: /(react| react-dom)/,
-        //   name: 'vendor',
-        //   chunks: 'all'
-        // },
+        vendor: {
+          test: /(react| react-dom)/,
+          name: 'vendor',
+          chunks: 'all'
+        },
         commons: {
           name: 'commons',
           chunks: 'initial',
@@ -111,7 +113,8 @@ module.exports = {
       // filename: 'vendor-[hash].js',
     },
     minimizer: [new TerserWebpackPlugin({
-      parallel: 4
+      parallel: 4,
+      cache: true
     }), new OptimizeCSSAssetsPlugin({ cssProcessor: require('cssnano') })]
   },
   module: {
