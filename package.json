@@ -10,7 +10,8 @@
     "lint_fix": "./node_modules/.bin/eslint --fix src/**/*.js",
     "lint": "./node_modules/.bin/eslint src/**/*.js",
     "build:ssr": "webpack --config webpack.ssr.js",
-    "build:stats": "webpack --config webpack.prod.js --json > stas.json"
+    "build:stats": "webpack --config webpack.prod.js --json > stas.json",
+    "dll": "webpack --config webpack.dll.js"
   },
   "repository": {
     "type": "git",

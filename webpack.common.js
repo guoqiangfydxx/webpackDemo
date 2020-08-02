@@ -95,11 +95,11 @@ module.exports = {
   optimization: {
     splitChunks: {
       cacheGroups: {
-        vendor: {
-          test: /(react| react-dom)/,
-          name: 'vendor',
-          chunks: 'all'
-        },
+        // vendor: {
+        //   test: /(react| react-dom)/,
+        //   name: 'vendor',
+        //   chunks: 'all'
+        // },
         commons: {
           name: 'commons',
           chunks: 'initial',
