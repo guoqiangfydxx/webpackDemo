@@ -1,5 +1,6 @@
 import React from 'react'
 import ReactDom from 'react-dom'
+import bg from '../assets/WechatIMG111.jpeg'
 // import NumAddByBit from 'numaddbybit'
 class TestReact extends React.Component {
   constructor (props) {
@@ -42,6 +43,7 @@ class TestReact extends React.Component {
     render () {
       const { Form, Counter, Text } = this.state
       return <div>
+        <img src={bg} alt='背景图片' />
         {Counter ? <Counter /> : null}
         {Form ? <Form /> : null}
         {Text ? <Text /> : null}
